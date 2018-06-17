@@ -30,6 +30,7 @@ router.post('/', (req, res) => {
 		publisher: req.body.publisher,
 		category: req.body.category,
 		language: req.body.language,
+		summary: req.body.summary,
 		availability: req.body.availability,
 	});
 	book.save((err, doc) => {
@@ -49,6 +50,7 @@ router.put('/:id', (req,res) => {
 		publisher: req.body.publisher,
 		category: req.body.category,
 		language: req.body.language,
+		summary: req.body.summary,
 		availability: req.body.availability,
 	};
 

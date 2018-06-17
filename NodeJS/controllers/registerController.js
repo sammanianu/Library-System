@@ -27,6 +27,11 @@ router.post('/', (req, res) => {
         username: req.body.username,
 		email: req.body.email,
 		password: req.body.password,
+		registrationNo: req.body.registrationNo,
+		year: req.body.year,
+		address: req.body.address,
+		mobile: req.body.mobile,
+
 	});
 	register.save((err, doc) => {
 		if(!err){ res.send(doc);}
@@ -38,13 +43,17 @@ router.put('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
 		return res.status(400).send('No record with given id : ${req.params.id}');
 
-	var register = {
+	var reg = {
 		username: req.body.username,
 		email: req.body.email,
 		password: req.body.password,
+		registrationNo: req.body.registrationNo,
+		year: req.body.year,
+		address: req.body.address,
+		mobile: req.body.mobile,
 	};
 
-	Register.findByIdAndUpdate(req.params.id, {$set: register}, {new: true}, (err, doc) => {
+	Register.findByIdAndUpdate(req.params.id, {$set: reg}, {new: true}, (err, doc) => {
 		if (!err) {res.send(doc);}
 		else { console.log('Error in Update :' + JSON.stringify(err, undefined, 2));}
 	});
