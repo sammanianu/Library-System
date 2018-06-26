@@ -7,7 +7,9 @@ var employeeController = require('./controllers/employeeController.js');
 var bookController = require('./controllers/bookController.js');
 var suggestController = require('./controllers/suggestController.js');
 var registerController = require('./controllers/registerController.js');
-var User = require('./models/User');
+var userController = require('./controllers/userController.js');
+var loginController = require('./controllers/loginController.js');
+//var User = require('./models/User');
 
 var app = express();
 app.use(bodyParser.json());
@@ -19,6 +21,10 @@ app.use('/employees', employeeController);
 app.use('/books', bookController);
 app.use('/suggests', suggestController);
 app.use('/registers', registerController);
+app.use('/users', userController);
+app.use('/login', loginController);
+
+
 
 
 
