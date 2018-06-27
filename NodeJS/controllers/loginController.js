@@ -30,9 +30,9 @@ router.post('/', (req, res) => {
     Register.find({email: email}, function(err, objs){
             if (objs.password == password)
             {
-                res.send('Successfull');
+                res.send('Successfull'+ JSON.stringify(err, undefined, 2));
             }else{
-                res.send('Error');
+                res.send('Error'+ JSON.stringify(err, undefined, 2));
             }
         });
 });
