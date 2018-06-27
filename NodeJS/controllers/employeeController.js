@@ -25,6 +25,8 @@ router.get('/:id', (req,res) => {
 router.post('/', (req, res) => {
 	var emp = new Employee({
 		name: req.body.name,
+		email: req.body.email,
+		contact: req.body.contact,
 		position: req.body.position,
 		office: req.body.office,
 		salary: req.body.salary,
@@ -39,18 +41,21 @@ router.put('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
 		return res.status(400).send('No record with given id : ${req.params.id}');
 
-	var emp = {
+	var employee = {
 		name: req.body.name,
+		email: req.body.email,
+		contact: req.body.contact,
 		position: req.body.position,
 		office: req.body.office,
 		salary: req.body.salary,
 	};
 
-	Employee.findByIdAndUpdate(req.params.id, {$set: emp}, {new: true}, (err, doc) => {
+	Employee.findByIdAndUpdate(req.params.id, {$set: employee}, {new: true}, (err, doc) => {
 		if (!err) {res.send(doc);}
 		else { console.log('Error in Update :' + JSON.stringify(err, undefined, 2));}
 	});
 });
+
 
 router.delete('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
