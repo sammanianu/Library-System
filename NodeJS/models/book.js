@@ -8,7 +8,8 @@ var Book = mongoose.model('Book',{
 	category: {type: String},
 	language: {type: String},
 	summary: {type: String},
-	availability: {type: Number}
+	availability: {type: Number},
+	image: {type: String}
 });
 
 module.exports = { Book };

@@ -32,6 +32,8 @@ router.post('/', (req, res) => {
 		language: req.body.language,
 		summary: req.body.summary,
 		availability: req.body.availability,
+		image: req.body.image,
+
 	});
 	book.save((err, doc) => {
 		if(!err){ res.send(doc);}
@@ -52,6 +54,7 @@ router.put('/:id', (req,res) => {
 		language: req.body.language,
 		summary: req.body.summary,
 		availability: req.body.availability,
+		image: req.body.image,
 	};
 
 	Book.findByIdAndUpdate(req.params.id, {$set: book}, {new: true}, (err, doc) => {
