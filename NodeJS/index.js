@@ -9,7 +9,6 @@ var suggestController = require('./controllers/suggestController.js');
 var registerController = require('./controllers/registerController.js');
 var userController = require('./controllers/userController.js');
 var loginController = require('./controllers/loginController.js');
-var employee1Controller = require('./controllers/employee1Controller.js');
 
 //var User = require('./models/User');
 
@@ -25,11 +24,3 @@ app.use('/suggests', suggestController);
 app.use('/registers', registerController);
 app.use('/users', userController);
 app.use('/login', loginController);
-app.use('/employee1s', employee1Controller);
-
-
-
-
-
-
-

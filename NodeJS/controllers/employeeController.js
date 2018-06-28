@@ -1,4 +1,3 @@
-
 const express = require('express');
 var router = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -19,20 +18,18 @@ router.get('/:id', (req,res) => {
 
 		Employee.findById(req.params.id, (err, doc) => {
 		if (!err) {res.send(doc);}
-		else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2));}
+		else { console.log('Error in Retriving Employees :' + JSON.stringify(err, undefined, 2));}
 	});
 });
 
 router.post('/', (req, res) => {
 	var employee = new Employee({
-		name: req.body.name,
+        name: req.body.name,
 		email: req.body.email,
-		contact: req.body.contact,
-		position: req.body.position,
-		office: req.body.office,
+        mobile: req.body.mobile,
+        position: req.body.position,
 		salary: req.body.salary,
 	});
-	
 	employee.save((err, doc) => {
 		if(!err){ res.send(doc);}
 		else { console.log('Error in Employee Save :' + JSON.stringify(err, undefined, 2));}
@@ -43,17 +40,15 @@ router.put('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
 		return res.status(400).send('No record with given id : ${req.params.id}');
 
-		var employee = new Employee({
-			name: req.body.name,
-			email: req.body.email,
-			contact: req.body.contact,
-			position: req.body.position,
-			office: req.body.office,
-			salary: req.body.salary,
-		});
-		
+	var employee = {
+		name: req.body.name,
+		email: req.body.email,
+        mobile: req.body.mobile,
+        position: req.body.position,
+		salary: req.body.salary,
+	};
 
-		Employee.findByIdAndUpdate(req.params.id, {$set: employee}, {new: true}, (err, doc) => {
+	Employee.findByIdAndUpdate(req.params.id, {$set: employee}, {new: true}, (err, doc) => {
 		if (!err) {res.send(doc);}
 		else { console.log('Error in Update :' + JSON.stringify(err, undefined, 2));}
 	});
