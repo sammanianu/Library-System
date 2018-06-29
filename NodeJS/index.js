@@ -9,6 +9,7 @@ var suggestController = require('./controllers/suggestController.js');
 var registerController = require('./controllers/registerController.js');
 var userController = require('./controllers/userController.js');
 var loginController = require('./controllers/loginController.js');
+var reserveBookController = require('./controllers/reserveBookController.js');
 
 //var User = require('./models/User');
 
@@ -24,3 +25,4 @@ app.use('/suggests', suggestController);
 app.use('/registers', registerController);
 app.use('/users', userController);
 app.use('/login', loginController);
+app.use('/reserveBook', reserveBookController);
