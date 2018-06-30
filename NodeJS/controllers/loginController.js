@@ -5,7 +5,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var { Login } = require('../models/login');
 var { Register } = require('../models/register');
 
-// => localhost:8080/logins/
+// => localhost:8080/login/
 router.get('/', (req,res) => {
 	Login.find((err, docs) => {
 		if (!err) {res.send(docs);}
@@ -24,13 +24,19 @@ router.get('/:id', (req,res) => {
 });
 
 router.post('/', (req, res) => {
+	console.log('request body >>>>>>>>', req.body.email)
 		var email = req.body.email
         var password = req.body.password  
          
     Register.find({email: email}, function(err, objs){
-            if (objs.password == password)
+		console.log('objs >>>>>.', objs)
+            if (objs.password === password)
             {
-                res.send('Successfull'+ JSON.stringify(err, undefined, 2));
+				// res.send('Successfull'+ JSON.stringify(err, undefined, 2));
+				res.json({
+					success: true,
+					msg: 'Successfully logged in'
+				})
             }else{
                 res.send('Error'+ JSON.stringify(err, undefined, 2));
             }
