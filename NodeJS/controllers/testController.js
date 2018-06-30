@@ -4,7 +4,8 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 var { Test } = require('../models/test');
 var { Register } = require('../models/register');
-
+var email1;
+var password1;
 // => localhost:8080/test/
 router.get('/', (req,res) => {
 	Test.find((err, docs) => {
@@ -36,12 +37,14 @@ router.get('/:id', (req,res) => {
 
 router.post('/', (req, res) => {
 	console.log('request body >>>>>>>>', req.body.email)
-		var email = req.body.email
-        var password = req.body.password  
+		email1 = req.body.email
+        password1 = req.body.password  
          
-    Register.find({email: email}, function(err, objs){
-		console.log('objs >>>>>.', objs)
-            if (objs.password === password)
+    Register.findOne({email: email1}, function(err, objs){
+		/*console.log('objs >>>>>.', objs)
+		console.log('password >>>>>.',objs.password)
+		console.log('password1 >>>>>.',password1)*/
+            if (objs.password === password1)
             {
 				// res.send('Successfull'+ JSON.stringify(err, undefined, 2));
 				res.json({
@@ -49,7 +52,11 @@ router.post('/', (req, res) => {
 					msg: 'Successfully logged in'
 				})
             }else{
-                res.send('Error'+ JSON.stringify(err, undefined, 2));
+				
+				res.json({
+					success: false,
+					msg: 'Fail logged in'
+				})
             }
         });
 });
