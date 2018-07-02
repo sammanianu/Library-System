@@ -26,9 +26,9 @@ router.get('/:id', (req,res) => {
 });
 
 router.post('/', (req, res) => {
-	console.log('request body >>>>>>>>', req.body.email)
-		email1 = req.body.email
-        password1 = req.body.password  
+	/*console.log('request body >>>>>>>>', req.body.email)*/
+		email1 = req.body.email;
+        password1 = req.body.password ; 
          
     Register.findOne({email: email1}, function(err, objs){
 		/*console.log('objs >>>>>.', objs)
@@ -39,14 +39,20 @@ router.post('/', (req, res) => {
 				// res.send('Successfull'+ JSON.stringify(err, undefined, 2));
 				res.json({
 					success: true,
+					registrationNo: objs.registrationNo,
+					username: objs.username,
+					year: objs.year,
+					mobile: objs.mobile,
+					address: objs.address,
+					password: objs.password,
 					msg: 'Successfully logged in'
-				})
+				});
             }else{
 				
 				res.json({
 					success: false,
-					msg: 'Fail logged in'
-				})
+					msg: 'Fail to logged in'
+				});
             }
         });
 });

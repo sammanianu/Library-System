@@ -63,6 +63,20 @@ router.put('/:id', (req,res) => {
 	});
 });
 
+router.put('/reserve/:id/:availability', (req,res) => {
+	if (!ObjectId.isValid(req.params.id))
+		return res.status(400).send('No record with given id : ${req.params.id}');
+
+	var book = {
+		availability: req.params.availability
+	};
+
+	Book.findByIdAndUpdate(req.params.id, {$set: book}, {new: true}, (err, doc) => {
+		if (!err) {res.send(doc);}
+		else { console.log('Error in Update :' + JSON.stringify(err, undefined, 2));}
+	});
+});
+
 router.delete('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
 		return res.status(400).send('No record with given id : ${req.params.id}');
