@@ -6,7 +6,10 @@ var Reserve = mongoose.model('Reserve',{
 	email: {type: String},
     isbn: {type: String},
 	title: {type: String},
-	author: {type: String}
+    author: {type: String},
+    reserveDate: {type: Date},
+    dueDate: {type: Date},
+    fineAmount: {type: Number}
 	
 });
 

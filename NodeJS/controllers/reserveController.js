@@ -8,7 +8,7 @@ var { Reserve } = require('../models/reserve');
 router.get('/', (req,res) => {
 	Reserve.find((err, docs) => {
 		if (!err) {res.send(docs);}
-		else { console.log('Error in Retriving Reserve :' + JSON.stringify(err, undefined, 2));}
+		else { console.log('Error in Retriving Books :' + JSON.stringify(err, undefined, 2));}
 	});
 });
 
@@ -16,9 +16,9 @@ router.get('/:id', (req,res) => {
 	if (!ObjectId.isValid(req.params.id))
 		return res.status(400).send('No record with given id : ${req.params.id}');
 
-		Reserve.findById(req.params.id, (err, doc) => {
+	Reserve.findById(req.params.id, (err, doc) => {
 		if (!err) {res.send(doc);}
-		else { console.log('Error in Retriving Reserve :' + JSON.stringify(err, undefined, 2));}
+		else { console.log('Error in Retriving Books :' + JSON.stringify(err, undefined, 2));}
 	});
 });
 
@@ -29,7 +29,10 @@ router.post('/', (req, res) => {
 		email: req.body.email,
 		isbn: req.body.isbn,
 		title: req.body.title,
-		author: req.body.author
+		author: req.body.author,
+		reserveDate: req.body.reserveDate,
+		dueDate: req.body.dueDate,
+		fineAmount: req.body.fineAmount,
 	});
 	reserve.save((err, doc) => {
 		if(!err){ res.send(doc);}
@@ -47,7 +50,10 @@ router.put('/:id', (req,res) => {
 		email: req.body.email,
 		isbn: req.body.isbn,
 		title: req.body.title,
-		author: req.body.author
+		author: req.body.author,
+		reserveDate: req.body.reserveDate,
+		dueDate: req.body.dueDate,
+		fineAmount: req.body.fineAmount,
 	};
 
 	Reserve.findByIdAndUpdate(req.params.id, {$set: reserve}, {new: true}, (err, doc) => {

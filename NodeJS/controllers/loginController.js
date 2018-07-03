@@ -40,6 +40,7 @@ router.post('/', (req, res) => {
 				res.json({
 					success: true,
 					registrationNo: objs.registrationNo,
+					email: objs.email,
 					username: objs.username,
 					year: objs.year,
 					mobile: objs.mobile,
